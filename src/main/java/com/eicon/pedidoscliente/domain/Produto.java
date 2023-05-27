@@ -1,8 +1,6 @@
 package com.eicon.pedidoscliente.domain;
+
 import jakarta.persistence.*;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import lombok.Data;
 
 @Data
@@ -17,11 +15,13 @@ public class Produto {
     private String nome;
 
     private Double preco;
+    private Integer quantidade;
 
-    public Produto(Long id, String nome, Double preco) {
+    public Produto(Long id, String nome, Double preco, Integer quantidade) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
+        this.quantidade = (quantidade == null ? 1 : quantidade);
     }
 
     public Produto() {

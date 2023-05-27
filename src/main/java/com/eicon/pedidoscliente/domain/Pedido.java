@@ -1,8 +1,8 @@
 package com.eicon.pedidoscliente.domain;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +21,11 @@ public class Pedido {
     private Cliente cliente;
 
     private LocalDateTime dataPedido;
+    @Transient
+    private Double desconto;
+
+    private Double valorNota;
+
 
     @ManyToMany
     @JoinTable(
@@ -37,10 +42,13 @@ public class Pedido {
         }
     }
 
-    public Pedido(Long id, Cliente cliente, LocalDateTime dataPedido) {
+    public Pedido(Long id, Cliente cliente, LocalDateTime dataPedido, Double desconto, Double valorNota) {
         this.id = id;
         this.cliente = cliente;
-        this.dataPedido = (dataPedido ==null? LocalDateTime.now(): dataPedido );
+        this.dataPedido = (dataPedido == null ? LocalDateTime.now() : dataPedido);
+        this.desconto = (desconto == null ? 0.00 : desconto);
+        this.valorNota = (valorNota == null ? 0.00 : valorNota);
+
     }
 
     public Pedido() {
