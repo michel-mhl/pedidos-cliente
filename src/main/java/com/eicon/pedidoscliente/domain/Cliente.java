@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,5 +18,13 @@ public class Cliente implements Serializable {
     private String nome;
 
     @OneToMany(mappedBy = "cliente")
-    private List<Pedido> pedidos;
+    private List<Pedido> pedidos = new ArrayList<>();
+
+    public Cliente(Long id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+
+    public Cliente() {
+    }
 }
