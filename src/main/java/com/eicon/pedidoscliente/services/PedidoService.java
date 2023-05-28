@@ -16,31 +16,34 @@ public class PedidoService {
 
     @Transactional
     public Pedido findById(Long id) {
-
         Pedido pedido = repo.findById(id).get();
+        deductNoteValue(pedido, id);
+        return pedido;
+    }
+
+    @Transactional
+    public List<Pedido> findAll() {
+        List<Pedido> list = repo.findAll();
+        return list;
+    }
+
+
+    public void deductNoteValue(Pedido pedido, Long id) {
+//metodo para calcular valor total da nota e disponibilizar desconto por quantidade de produtos.
         Double valor = 0.00;
-        Double subtotal = 0.00;
+        Double valorDesconto = 0.00;
         for (Produto produto : pedido.getProdutos()) {
             int cont = 0;
             valor += produto.getPreco() * produto.getQuantidade();
             if (pedido.getProdutos().get(cont).getQuantidade() >= 10) {
-                subtotal = valor - (valor * 0.10);
-                pedido.setDesconto(subtotal);
+                valorDesconto = valor - (valor * 0.10);
+                pedido.setValorComDesconto(valorDesconto);
             } else if (pedido.getProdutos().get(cont).getQuantidade() >= 5) {
-                subtotal = valor - (valor * 0.05);
-                pedido.setDesconto(subtotal);
+                valorDesconto = valor - (valor * 0.05);
+                pedido.setValorComDesconto(valorDesconto);
             }
         }
         pedido.setValorNota(valor);
-
-
-        return pedido;
-    }
-
-      @Transactional
-    public List<Pedido> findAll() {
-        List<Pedido> list = repo.findAll();
-        return list;
     }
 
 

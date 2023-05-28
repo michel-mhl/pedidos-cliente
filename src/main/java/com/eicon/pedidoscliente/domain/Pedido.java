@@ -22,7 +22,7 @@ public class Pedido {
 
     private LocalDateTime dataPedido;
     @Transient
-    private Double desconto;
+    private Double valorComDesconto;
 
     private Double valorNota;
 
@@ -46,7 +46,7 @@ public class Pedido {
         this.id = id;
         this.cliente = cliente;
         this.dataPedido = (dataPedido == null ? LocalDateTime.now() : dataPedido);
-        this.desconto = (desconto == null ? 0.00 : desconto);
+        this.valorComDesconto = (desconto == null ? 0.00 : desconto);
         this.valorNota = (valorNota == null ? 0.00 : valorNota);
 
     }
