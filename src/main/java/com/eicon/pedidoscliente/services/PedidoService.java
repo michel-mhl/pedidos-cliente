@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -46,5 +47,13 @@ public class PedidoService {
         pedido.setValorNota(valor);
     }
 
+
+    public List<Pedido> searchByDate(LocalDateTime data) {
+        if (data != null) {
+            return repo.findByDataPedido(data);
+        } else {
+            return repo.findAll();
+        }
+    }
 
 }
