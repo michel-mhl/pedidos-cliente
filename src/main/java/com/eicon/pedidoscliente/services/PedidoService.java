@@ -56,4 +56,9 @@ public class PedidoService {
         }
     }
 
+    public void setRepo(PedidoRepository repo) {
+        this.repo = repo;
+    }
+
+
 }
