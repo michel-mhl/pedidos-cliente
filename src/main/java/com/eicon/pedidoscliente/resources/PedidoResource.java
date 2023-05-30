@@ -18,19 +18,21 @@ public class PedidoResource {
     @Autowired
     private PedidoService service;
 
+    @GetMapping()
+    public ResponseEntity<List<Pedido>> findAll() {
+        List<Pedido> list = service.findAll();
+        return ResponseEntity.ok().body(list);
+    }
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<Pedido> findById(@PathVariable Long id) {
         Pedido obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
 
-    @GetMapping()
-    public ResponseEntity<List<Pedido>> findAll() {
-        List<Pedido> list = service.findAll();
-        return ResponseEntity.ok().body(list);
-    }
-    @GetMapping("/data/{data}")
+
+  /*  @GetMapping("/data/{data}")
     public List<Pedido> getPedidosByData(@PathVariable LocalDateTime data) {
         return service.searchByDate(data);
-    }
+    }*/
 }

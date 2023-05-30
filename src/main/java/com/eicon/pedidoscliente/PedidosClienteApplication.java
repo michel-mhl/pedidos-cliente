@@ -58,7 +58,7 @@ public class PedidosClienteApplication implements CommandLineRunner {
 
 
         Pedido ped1 = new Pedido(null, cli1, null,null,null);
-        Pedido ped2 = new Pedido(null, cli1, LocalDateTime.of(2023, 05, 24, 10, 20),null,null);
+        Pedido ped2 = new Pedido(null, cli2, LocalDateTime.of(2023, 05, 24, 10, 20),null,null);
         Pedido ped3 = new Pedido(null, cli1, LocalDateTime.of(2023, 05, 24, 10, 20),null,null);
         Pedido ped4 = new Pedido(null, cli1, LocalDateTime.of(2023, 05, 24, 10, 20),null,null);
         Pedido ped5 = new Pedido(null, cli1, LocalDateTime.of(2023, 05, 24, 10, 20),null,null);
@@ -72,10 +72,11 @@ public class PedidosClienteApplication implements CommandLineRunner {
         ped4.getProdutos().addAll(Arrays.asList(p4, p5));
         ped5.getProdutos().addAll(Arrays.asList(p4, p5));
         ped6.getProdutos().addAll(Arrays.asList(p4, p5));
-        pedidoRepository.saveAll(Arrays.asList(ped1, ped2,ped2,ped3,ped4,ped5,ped6));
+        pedidoRepository.saveAll(Arrays.asList(ped1,ped2,ped3,ped4,ped5,ped6));
 
 
         cli1.getPedidos().addAll(Arrays.asList(ped1, ped2,ped3,ped4,ped5,ped6));
+        cli2.getPedidos().addAll(Arrays.asList(ped1));
         clienterRepoitory.saveAll(Arrays.asList(cli1, cli2));
 
 

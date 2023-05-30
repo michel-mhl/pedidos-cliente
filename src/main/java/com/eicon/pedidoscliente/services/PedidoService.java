@@ -4,6 +4,7 @@ import com.eicon.pedidoscliente.domain.Pedido;
 import com.eicon.pedidoscliente.domain.Produto;
 import com.eicon.pedidoscliente.repositories.PedidoRepository;
 import jakarta.transaction.Transactional;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,10 @@ public class PedidoService {
     @Transactional
     public List<Pedido> findAll() {
         List<Pedido> list = repo.findAll();
+
+        for (Pedido pedido : list) {
+            Hibernate.initialize(pedido.getProdutos());
+        }
         return list;
     }
 
@@ -48,13 +53,13 @@ public class PedidoService {
     }
 
 
-    public List<Pedido> searchByDate(LocalDateTime data) {
+/*    public List<Pedido> searchByDate(LocalDateTime data) {
         if (data != null) {
             return repo.findByDataPedido(data);
         } else {
             return repo.findAll();
         }
-    }
+    }*/
 
     public void setRepo(PedidoRepository repo) {
         this.repo = repo;
