@@ -39,12 +39,12 @@ public class PedidoService {
         Double valor = 0.00;
         Double valorDesconto = 0.00;
         for (Produto produto : pedido.getProdutos()) {
-            int cont = 0;
+
             valor += produto.getPreco() * produto.getQuantidade();
-            if (pedido.getProdutos().get(cont).getQuantidade() >= 10) {
+            if (pedido.getProdutos().get(0).getQuantidade() >= 10) {
                 valorDesconto = valor - (valor * 0.10);
                 pedido.setValorComDesconto(valorDesconto);
-            } else if (pedido.getProdutos().get(cont).getQuantidade() >= 5) {
+            } else if (pedido.getProdutos().get(0).getQuantidade() >= 5) {
                 valorDesconto = valor - (valor * 0.05);
                 pedido.setValorComDesconto(valorDesconto);
             }

@@ -65,13 +65,13 @@ public class PedidoServiceTeste {
         Pedido pedido = new Pedido();
         Produto produto1 = new Produto();
         produto1.setPreco(10.0);
-        produto1.setQuantidade(6);
+        produto1.setQuantidade(10);
         pedido.getProdutos().add(produto1);
 
 
         pedidoService.deductNoteValue(pedido, 1L);
 
-        assertEquals(60.0, pedido.getValorNota(), 0.01);
-        assertEquals(57.0, pedido.getValorComDesconto(), 0.01);
+        assertEquals(100.0, pedido.getValorNota(), 0.01);
+        assertEquals(90.0, pedido.getValorComDesconto(), 0.01);
     }
 }
